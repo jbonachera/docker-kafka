@@ -12,3 +12,9 @@ log.segment.bytes=1073741824
 log.retention.check.interval.ms=300000
 zookeeper.connect={{ ZOOKEEPER_CONNECT }}
 zookeeper.connection.timeout.ms=6000
+{% if ADVERTISED_IP -%}
+{% if ADVERTISED_PORT -%}
+advertised.listeners=PLAINTEXT://{{ ADVERTISED_IP }}:{{ ADVERTISED_PORT }}
+{% else -%}
+advertised.listeners=PLAINTEXT://{{ ADVERTISED_IP }}:9092
+{%- endif %}
